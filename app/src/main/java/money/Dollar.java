@@ -11,4 +11,11 @@ public class Dollar {
         return new Dollar(amount * multiplier);
     }
 
+    public boolean equals(Dollar dollar) {
+        if (this.amount != dollar.amount) {
+            return false;
+        }
+        return true;
+    }
+
 }
