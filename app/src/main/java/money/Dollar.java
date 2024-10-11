@@ -1,7 +1,7 @@
 package money;
 
 public class Dollar {
-    int amount;
+    private int amount;
 
     Dollar(int amount) {
         this.amount = amount;
@@ -11,11 +11,9 @@ public class Dollar {
         return new Dollar(amount * multiplier);
     }
 
-    public boolean equals(Dollar dollar) {
-        if (this.amount != dollar.amount) {
-            return false;
-        }
-        return true;
+    public boolean equals(Object object) {
+        Dollar dollar = (Dollar) object;
+        return amount == dollar.amount;
     }
 
 }
