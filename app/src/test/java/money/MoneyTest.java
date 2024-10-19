@@ -63,5 +63,28 @@ public class MoneyTest {
         assertEquals(Money.dollar(1), result);
     }
 
+    @Test
+    @DisplayName("フラン→ドルの変換をテスト")
+    public void testReduceMoneyDifferentCurrency() {
+        Bank bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        Money result = bank.reduce(Money.franc(2), "USD");
+        assertEquals(Money.dollar(1), result);
+    }
+
+    // @Test
+    // @DisplayName("学習用テスト：通貨の紐付けに使うハッシュテーブルを理解する")
+    // public void testArrayEquals() {
+    //     assertTrue((new Object[] {"abc"}).equals(new Object[] {"abc"}));
+    // }
+
+    @Test
+    @DisplayName("回帰テスト: 同じ通貨へのレート算出を確認")
+    public void testIdentityRate() {
+        Bank bank = new Bank();
+        // bank.addRate("USD", "USD", 1); 同じ通貨はレート１で返すのが正しいのでこれは不要
+        assertEquals(1, bank.rate("USD", "USD"));
+    }
+
 }
 
