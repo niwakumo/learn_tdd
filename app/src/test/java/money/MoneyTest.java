@@ -72,11 +72,12 @@ public class MoneyTest {
         assertEquals(Money.dollar(1), result);
     }
 
-    // @Test
-    // @DisplayName("学習用テスト：通貨の紐付けに使うハッシュテーブルを理解する")
-    // public void testArrayEquals() {
-    //     assertTrue((new Object[] {"abc"}).equals(new Object[] {"abc"}));
-    // }
+    @Test
+    @DisplayName("学習用テスト：通貨の紐付けに使うハッシュテーブルを理解する")
+    public void testArrayEquals() {
+        // Javaの仕様上等しくならないので、assertFalseとしてテストを残す
+        assertFalse((new Object[] {"abc"}).equals(new Object[] {"abc"}));
+    }
 
     @Test
     @DisplayName("回帰テスト: 同じ通貨へのレート算出を確認")
