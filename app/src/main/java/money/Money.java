@@ -35,10 +35,12 @@ class Money implements Expression {
         return amount + " " + currency;
     }
 
-    Expression plus(Money addend) {
+    // Expressionのメソッド
+    public Expression plus(Expression addend) {
         return new Sum(this, addend);
     }
 
+    // Expressionのメソッド
     public Money reduce (Bank bank, String to) {
         // Bankのrate関数で変換レートを計算
         int rate = bank.rate(currency, to);

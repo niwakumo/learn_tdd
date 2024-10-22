@@ -87,5 +87,19 @@ public class MoneyTest {
         assertEquals(1, bank.rate("USD", "USD"));
     }
 
+    @Test
+    @DisplayName("CHFとUSDの加算結果をUSDに変換する")
+    public void testMixedAdditon() {
+        Expression fiveBucks = Money.dollar(5);
+        Expression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+        // "CHF" / 2 -> "USD" 
+        bank.addRate("CHF", "USD", 2);
+        // (5$ + 10F)の結果をUSDに変換する
+        Money result = bank.reduce(fiveBucks.plus(tenFrancs), "USD");
+        // 変換結果が10$になることを確認
+        assertEquals(Money.dollar(10), result);
+    }
+
 }
 
