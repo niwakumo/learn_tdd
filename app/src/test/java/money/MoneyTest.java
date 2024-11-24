@@ -101,5 +101,33 @@ class MoneyTest {
         assertEquals(Money.dollar(10), result);
     }
 
+    @Test
+    @DisplayName("Sumのplusメソッドをテスト")
+    void testSumPlusMoney() {
+        Expression fiveBucks = Money.dollar(5);
+        Expression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+
+        bank.addRate("CHF", "USD", 2); // USDはCHFの2倍
+        Expression sum = new Sum(fiveBucks, tenFrancs).plus(fiveBucks); // 5$ + 10F + 5$
+        Money result = bank.reduce(sum, "USD"); // 結果をUSDで返す
+        
+        assertEquals(Money.dollar(15), result);
+    }
+
+    @Test
+    @DisplayName("Sumのtimesメソッドをテスト")
+    void testSumTimes() {
+        Expression fiveBucks = Money.dollar(5);
+        Expression tenFrancs = Money.franc(10);
+        Bank bank = new Bank();
+
+        bank.addRate("CHF", "USD", 2); // USDはCHFの2倍
+        Expression sum = new Sum(fiveBucks, tenFrancs).times(2); // (5$ + 10F) * 2
+        Money result = bank.reduce(sum, "USD"); // 結果をUSDで返す
+        
+        assertEquals(Money.dollar(20), result);
+    }    
+
 }
 
